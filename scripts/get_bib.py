@@ -1,4 +1,6 @@
 from scholarly import scholarly
+import bibtexparser
+import yaml
 import hashlib
 
 
@@ -14,8 +16,21 @@ def generate_unique_id(publication):
     unique_id = hashlib.md5(unique_string.encode('utf-8')).hexdigest()
     return unique_id
 
+# Helper function to extract authors using bibtexparser
+def extract_authors_from_bibtex(bibtex_entry):
+    bib_database = bibtexparser.loads(bibtex_entry)
+    entry = bib_database.entries[0]  # Assuming one entry in BibTeX
+    authors = entry.get('author', 'Unknown Author').split(' and ')
+    return [author.strip() for author in authors]
 
-def get_papers_by_authors_and_dates(author_name, start_year, end_year):
+# Helper function to extract DOI from BibTeX string
+def extract_doi_from_bibtex(bibtex_entry):
+    bib_database = bibtexparser.loads(bibtex_entry)
+    print(bibtex_entry)
+    entry = bib_database.entries[0]  # Assuming one entry in BibTeX
+    return entry.get('doi', '')
+
+def get_papers_by_authors_and_dates(author_name, start_year, end_year, output_file='papers.yml'):
     all_papers = []
 
     search_query = scholarly.search_author(author_name)
@@ -25,10 +40,9 @@ def get_papers_by_authors_and_dates(author_name, start_year, end_year):
     for pub in author['publications']:
         pub_year = pub.get('bib', {}).get('pub_year')
         if pub_year and start_year <= int(pub_year) <= end_year:
-            # Check if the publication has an 'ENTRYTYPE', if not set a default type
+            # Ensure 'ENTRYTYPE' and 'ID' are present, and assign defaults if missing
             if 'ENTRYTYPE' not in pub['bib']:
                 pub['bib']['ENTRYTYPE'] = 'article'  # Default to 'article' if missing
-
             pub['bib']['ID'] = generate_unique_id(pub)
             pub['bib']['year'] = pub_year
 
@@ -36,25 +50,40 @@ def get_papers_by_authors_and_dates(author_name, start_year, end_year):
             if 'pub_year' in pub['bib']:
                 del pub['bib']['pub_year']
 
+            # Retrieve BibTeX entry to extract author list
             try:
                 bibtex_entry = scholarly.bibtex(pub)  # Retrieve BibTeX entry
-                all_papers.append(bibtex_entry)
-            except KeyError as e:
-                print(f"Skipping a publication due to missing key: {e}")
+                authors = extract_authors_from_bibtex(bibtex_entry)
+                doi = extract_doi_from_bibtex(bibtex_entry)
+            except Exception as e:
+                print(f"Error retrieving BibTeX or authors for {pub['bib'].get('title', 'Unknown Title')}: {e}")
+                authors = ["Unknown Author"]
+                doi = ""
+
+            # Build a YAML-friendly dictionary for each publication
+            paper_data = {
+                'id': pub['bib']['ID'],
+                'title': pub['bib'].get('title', 'Unknown Title').strip('{}'),
+                'authors': authors,
+                'year': pub['bib'].get('year', 'Unknown Year'),
+                'citation': pub['bib'].get('journal', 'Unknown Journal'),
+                'doi': doi,
+                'entrytype': pub['bib'].get('ENTRYTYPE', 'article')
+            }
+            all_papers.append(paper_data)
 
     return all_papers
 
 # Example usage:
 authors = [('vaitea opuu', 2023, 2030)]
-bib_output = '../_bibliography/references.bib'
+bib_output = '../_data/references.yml'
 
 all_papers = []
 for author, start_d, end_d in authors:
     all_papers += get_papers_by_authors_and_dates(author, 2023, 2030)
 
-# Write all BibTeX entries to the file
-with open(bib_output, 'w') as bibtex_file:
-    for entry in all_papers:
-        bibtex_file.write(entry + '\n\n')
+# Write the collected papers to a YAML file
+with open(bib_output, 'w') as yaml_file:
+    yaml.dump(all_papers, yaml_file, default_flow_style=False)
 
 print(f"Saved {len(all_papers)} papers to {bib_output}")

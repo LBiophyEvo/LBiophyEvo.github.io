@@ -32,11 +32,9 @@ github: "https://github.com/LBiophyEvo"
 
 # Build settings
 theme: minima
-# theme: minimal-mistakes-jekyll
 
 plugins:
   - jekyll-feed
-  # - jekyll-scholar
 
 navigation:
   - name: "Home"
@@ -49,6 +47,7 @@ navigation:
     link: "/people/"
 
 header_pages:
+  - index.md
   - people.md
   - research.md
   - publications.md
@@ -73,14 +72,6 @@ header_pages:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
-scholar:
-  style: modern-language-association
-  source: ./_bibliography
-  bibliography: references.bib
-  sort_by: year
-  group_by: year
-  order: descending
 
 collections:
   members:
