@@ -3,14 +3,15 @@ layout: default
 title: "Our Team"
 ---
 
-{% assign grouped_members = site.members | group_by: "type" %}
+{% assign grouped_members = site.members | group_by: "type" | sort: "type" | reverse %}
 
 <div class="people-gallery">
   {% for group in grouped_members %}
     <h2>{{ group.name }}</h2>
     <div class="position-group">
       <div class="people-gallery-row">
-        {% for member in group.items %}
+        {% assign sorted_members = group.items | sort: "name" | reverse %}
+        {% for member in sorted_members %}
           <div class="people-gallery-item">
             <img src="{{ member.image }}" alt="{{ member.title }}" class="people-gallery-photo">
             <div class="people-gallery-info">

@@ -30,12 +30,15 @@ layout: home
       {% for post in site.data.feed_news %}
       <div class="feed-item">
         <!-- <div class="feed-date">{{ post.title }}</div> -->
-        <p class="feed-content">{{ post.content }}<br><div class="feed-date">{{ post.date }}</div></p>
+        <p class="feed-content">{{ post.content }}<br><span class="feed-date">{{ post.date }}</span></p>
       </div>
       {% endfor %}
     </div>
   </div>
 </div>
+
+<hr>
+<br>
 
 <div class="meeting-feed">
     <h2>Lab meetings</h2>
@@ -43,11 +46,15 @@ layout: home
       {% for post in site.data.lab_meetings %}
       <div class="feed-item">
         <!-- <div class="feed-date">{{ post.title }}</div> -->
-        <p class="feed-content">{{post.type}} {{ post.speaker }} <span class="feed-title">{{post.title}}</span><br><span class="feed-date">{{ post.date }}</span></p>
+        <p class="feed-content">{{ post.speaker }} <span class="feed-title">{{post.title}}</span><br><span class="feed-date">{{ post.date }} {{post.type}} </span></p>
       </div>
       {% endfor %}
     </div>
 </div>
+<br>
+
+<hr>
+<br>
 
 <h2>Research topics include:</h2>
 <div class="gallery">
