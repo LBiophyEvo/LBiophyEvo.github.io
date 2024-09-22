@@ -3,7 +3,7 @@ layout: default
 title: "Our Team"
 ---
 
-{% assign grouped_members = site.members | group_by: "position" %}
+{% assign grouped_members = site.members | group_by: "type" %}
 
 <div class="people-gallery">
   {% for group in grouped_members %}
@@ -15,7 +15,7 @@ title: "Our Team"
             <img src="{{ member.image }}" alt="{{ member.title }}" class="people-gallery-photo">
             <div class="people-gallery-info">
               <h3>{{ member.name }}</h3>
-              <p>{{ member.email }}</p>
+              <!-- <p>{{ member.email }}</p> -->
               <p>{{ member.content }}</p>
             </div>
           </div>
