@@ -90,6 +90,14 @@ body {
     @include relative-font-size(1.2);
 }
 
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .research-card {
+        width: 100%; /* Takes 100% width on smaller screens */
+        margin-bottom: 20px;
+    }
+}
+
 /* Feed **********************************************************************/
 .meeting-feed {
     width: 85%;
@@ -152,6 +160,24 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px; /* Adjust this to control space between feed and gallery */
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column; /* Stack the main content and news feed */
+    }
+
+    .main-content,
+    .news-feed {
+        width: 100%; /* Take full width on small screens */
+    }
+
+    .news-feed {
+        margin-top: 20px; /* Add some space between main content and news feed */
+        padding-left: 0; /* Remove padding on small screens */
+        border-left: none; /* Remove border on small screens */
+    }
 }
 
 /* People ********************************************************************/

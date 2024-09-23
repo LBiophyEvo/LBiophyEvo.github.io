@@ -3,7 +3,18 @@ name: Origins of life, cells, and multicellularity
 image: /assets/images/topics/dropletcolors.png
 title: Origins
 ---
-Aliquam erat volutpat. Nunc eleifend leo vitae magna. In id erat non orci
-commodo lobortis. Proin neque massa, cursus ut, gravida ut, lobortis eget,
-lacus. Sed diam. Praesent fermentum tempor tellus. Nullam tempus. Mauris ac
-felis vel velit tristique imperdiet.
+Evolution is the major driving force of biological complexity, but evolution is
+in itself a complex process that does not seem likely to appear in a spontaneous
+manner. Thus, how evolution can emerge from purely physical-chemical processes
+remains a fundamental puzzle. We study this question in in vitro RNA reaction
+networks capable of self-reproduction. The first step is to understand how the
+Darwinian properties of variation, reproduction with heredity, and selection can
+be implemented from molecular mechanisms. We notably investigate the role of
+recombination as a driving molecular mechanism. Evolution further requires its
+different properties to work in concert. This must rely on a form of a
+compartmentalized life cycle. Indeed, each compartment provides a unit of
+selection for collectives of molecules and natural selection operates on
+populations of such compartments across generations. To create and analyze
+compartments, we make use of droplet microfluidic technologies (in collaboration
+with Andrew Griffiths, Laboratory of Biochemistry ESPCI) and self-assembled
+compartments (in collaboration with Tommaso Fraccia, SAM team).
