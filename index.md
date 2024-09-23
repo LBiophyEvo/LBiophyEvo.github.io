@@ -5,6 +5,11 @@
 layout: home
 ---
 
+<div class="bandeau">
+  <img src="./assets/images/banner/Scaffold1_12.jpg" class="patchwork-img" alt="Image 1">
+  <!-- You can add more images or repeat the same ones multiple times -->
+</div>
+
 <div class="content-wrapper">
   <div class="main-content">
     <div class="lab-description-box">
@@ -25,7 +30,7 @@ layout: home
 </div>
 
 <div class="news-feed">
-    <h2>News in the LBE</h2>
+    <h2 class="feed-title">News in the LBE</h2>
     <div class="feed">
       {% for post in site.data.feed_news %}
       <div class="feed-item">
@@ -37,7 +42,7 @@ layout: home
   </div>
 </div>
 
-<hr>
+<hr class="custom-hr">
 <br>
 
 <div class="meeting-feed">
@@ -46,14 +51,14 @@ layout: home
       {% for post in site.data.lab_meetings %}
       <div class="feed-item">
         <!-- <div class="feed-date">{{ post.title }}</div> -->
-        <p class="feed-content">{{ post.speaker }} <span class="feed-title">{{post.title}}</span><br><span class="feed-date">{{ post.date }} {{post.type}} </span></p>
+        <p class="feed-content"><strong>{{ post.speaker }}</strong> <span class="feed-title">{{post.title}}</span><br><span class="feed-date">{{ post.date }} {{post.type}} </span></p>
       </div>
       {% endfor %}
     </div>
 </div>
-<br>
 
-<hr>
+<br>
+<hr class="custom-hr">
 <br>
 
 <h2>Research topics include:</h2>

@@ -75,7 +75,7 @@ def get_papers_by_authors_and_dates(author_name, start_year, end_year, output_fi
     return all_papers
 
 # Example usage:
-authors = [('vaitea opuu', 2023, 2030)]
+authors = [('vaitea opuu', 2023, 2030), ("philippe nghe", 2021, 2030)]
 bib_output = '../_data/references.yml'
 
 all_papers = []
