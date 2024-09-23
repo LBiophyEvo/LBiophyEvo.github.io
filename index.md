@@ -5,10 +5,7 @@
 layout: home
 ---
 
-<div class="bandeau">
-  <img src="./assets/images/banner/Scaffold1_12.jpg" class="patchwork-img" alt="Image 1">
-  <!-- You can add more images or repeat the same ones multiple times -->
-</div>
+<div class="bandeau-croc-top" style="background-image: url('./assets/images/banner/Scaffold1_12.jpg');"></div>
 
 <div class="content-wrapper">
   <div class="main-content">

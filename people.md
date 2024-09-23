@@ -2,11 +2,12 @@
 layout: default
 title: "Our Team"
 ---
+<div class="bandeau-croc-bottom" style="background-image: url('./assets/images/people/lab_photo.jpg');"></div>
 
-<div class="bandeau">
-  <img src="./assets/images/people/lab_photo.jpg" class="patchwork-img" alt="Image 1">
-  <!-- You can add more images or repeat the same ones multiple times -->
-</div>
+<!-- <div class="bandeau-croc-bottom"> -->
+<!--   <img src="./assets/images/people/lab_photo.jpg" alt="Image 1"> -->
+<!--   <\!-- You can add more images or repeat the same ones multiple times -\-> -->
+<!-- </div> -->
 
 {% assign grouped_members = site.members | group_by: "type" | sort: "type" | reverse %}
 
