@@ -31,8 +31,8 @@ layout: home
     <div class="feed">
       {% for post in site.data.feed_news %}
       <div class="feed-item">
-        <!-- <div class="feed-date">{{ post.title }}</div> -->
-        <p class="feed-content">{{ post.content }}<br><span class="feed-date">{{ post.date }}</span></p>
+        <span class="feed-title">{{ post.title }}</span>
+        <p class="feed-text">{{ post.content }}<br><span class="feed-date">{{ post.date }}</span></p>
       </div>
       {% endfor %}
     </div>
@@ -42,8 +42,8 @@ layout: home
 <hr class="custom-hr">
 <br>
 
+<h2 class="feed-title">Lab meetings</h2>
 <div class="meeting-feed">
-    <h2>Lab meetings</h2>
     <div class="feed">
       {% for post in site.data.lab_meetings %}
       <div class="feed-item">
@@ -58,16 +58,25 @@ layout: home
 <hr class="custom-hr">
 <br>
 
-<h2>Research topics include:</h2>
-<div class="gallery">
-  {% for item in site.researchs %}
-  <div class="research-card">
-    <h3>{{ item.name }}</h3>
-    <img src="{{ item.image }}" alt="{{ item.title }}" class="research-thumbnail">
-    <div class="research-card-body">
-      <p>{{ item.content }}</p>
+<h2 class="feed-title">Research topics</h2>
+<div>
+  <!-- {% assign projects_by_topic = site.projects | group_by: "topic" %} -->
+  
+  {% for topic in projects_by_topic %}
+    <!-- <h3>{{ topic.name | capitalize }}</h3> -->
+    <div class="gallery">
+      {% for project in topic.items %}
+        <div class="research-card">
+          <div class="gallery-info">
+            <a class="research-link" href="{{ project.url | relative_url }}">
+            <img src="{{ project.image }}" alt="{{ project.name }}" class="research-thumbnail">
+            <br>
+              {{ project.name | escape }}
+            </a>
+            <p>{{ project.description }}</p>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  </div>
   {% endfor %}
 </div>
-

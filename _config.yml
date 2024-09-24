@@ -39,8 +39,6 @@ plugins:
 navigation:
   - name: "Home"
     link: "/"
-  - name: "Research"
-    link: "/research/"
   - name: "Publications"
     link: "/publications/"
   - name: "People"
@@ -49,7 +47,6 @@ navigation:
 header_pages:
   - index.md
   - people.md
-  - research.md
   - publications.md
   - software.md
 

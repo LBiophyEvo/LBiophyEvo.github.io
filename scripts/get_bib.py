@@ -69,6 +69,7 @@ def get_papers_by_authors_and_dates(author_name, start_year, end_year, output_fi
                 'citation': pub['bib'].get('journal', 'Unknown Journal'),
                 'doi': doi,
                 'entrytype': pub['bib'].get('ENTRYTYPE', 'article')
+                'type': "preprint" if pub['bib'].get('journal', 'Unknown Journal') in ["BioRxiv"] else "paper",
             }
             all_papers.append(paper_data)
 
@@ -79,8 +80,13 @@ authors = [('vaitea opuu', 2023, 2030), ("philippe nghe", 2021, 2030)]
 bib_output = '../_data/references.yml'
 
 all_papers = []
+seen_title = set()
 for author, start_d, end_d in authors:
-    all_papers += get_papers_by_authors_and_dates(author, 2023, 2030)
+    tmp = get_papers_by_authors_and_dates(author, 2023, 2030)
+    for el in tmp:
+        if el["title"] not in seen_title:
+            all_papers += [el]
+            seen_title.add(el["title"])
 
 # Write the collected papers to a YAML file
 with open(bib_output, 'w') as yaml_file:

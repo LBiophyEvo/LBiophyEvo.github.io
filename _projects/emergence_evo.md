@@ -1,6 +1,6 @@
 ---
 layout: post
-name: Autocatalytic cycles
+name: The emergence of evolution in the RNA world
 topic: Origin of Life
 image: /assets/images/topics/dropletcolors.png
 ---
