@@ -2,6 +2,10 @@
 
 cd /home/vopuu/project/LBiophyEvo.github.io/scripts/
 
+# Pull latest changes from the remote to avoid conflicts
+git pull origin main
+
+
 python get_news.py 2> log/log_news
 python get_bib.py 2> log/log_bib
 python get_xls_people.py 2> log/log_people
@@ -14,9 +18,6 @@ git add .
 
 # Commit the changes with a message
 git commit -m "Automatic update from cron"
-
-# Pull latest changes from the remote to avoid conflicts
-git pull origin main
 
 # Push the changes to GitHub
 git push origin main
